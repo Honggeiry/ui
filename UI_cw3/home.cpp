@@ -127,6 +127,21 @@ Home::Home(QWidget *parent) :
     thumbnailWidget->setLayout(thumbnailLayout);
     thumbnailScrollArea->setWidget(thumbnailWidget);
 
+    // Initialize the button to video map
+    buttonVideoMap[thumb1Button] = "qrc:/resource/video/thumbtest1.mp4";
+    buttonVideoMap[thumb2Button] = "qrc:/resource/video/thumbtest2.mp4";
+    buttonVideoMap[thumb3Button] = "qrc:/resource/video/thumbtest3.mp4";
+
+    // Set thumbnails for buttons
+    thumb1Button->setIcon(QIcon(":/resource/img/thumbtest1.jpg"));
+    thumb2Button->setIcon(QIcon(":/resource/img/thumbtest2.jpg"));
+    thumb3Button->setIcon(QIcon(":/resource/img/thumbtest3.jpg"));
+
+    // Connect thumbnail buttons to slot
+    connect(thumb1Button, &QPushButton::clicked, this, &Home::onThumbnailClicked);
+    connect(thumb2Button, &QPushButton::clicked, this, &Home::onThumbnailClicked);
+    connect(thumb3Button, &QPushButton::clicked, this, &Home::onThumbnailClicked);
+
     // Bottom section for comments
     QVBoxLayout *commentsLayout = new QVBoxLayout;
     QLabel *usernameLabel = new QLabel("Username", this);
@@ -162,7 +177,8 @@ Home::Home(QWidget *parent) :
     // Initialize the timer
     notificationTimer = new QTimer(this);
     connect(notificationTimer, &QTimer::timeout, this, &Home::showNotification);
-    notificationTimer->setInterval(2000000); // Set the timeout duration
+    // Set the timeout duration
+    notificationTimer->setInterval(2000000);
     notificationTimer->start();
 
     // Set a minimum size for the dialog
@@ -230,6 +246,17 @@ void Home::on_addButton_clicked()
     }
 }
 
+// Slot for handling thumbnail click
+void Home::onThumbnailClicked() {
+    QPushButton *clickedButton = qobject_cast<QPushButton*>(sender());
+
+    QString videoPath = buttonVideoMap[clickedButton];
+    player->setMedia(QUrl(videoPath));
+    player->play();
+
+    playButton->setText("Pause");
+
+}
 
 void Home::togglePlayStop()
 {

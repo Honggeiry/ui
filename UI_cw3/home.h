@@ -13,6 +13,8 @@
 #include <QLabel>
 #include <QComboBox>
 
+#include <QMap>
+
 class QTextEdit;
 class QTimer;
 
@@ -41,6 +43,7 @@ private slots:
     void changePlaybackSpeed(int index);
     void setVolume(int volume);
     void stopVideo();
+    void onThumbnailClicked();
 
 private:
     Ui::Home *ui;
@@ -54,6 +57,8 @@ private:
     QSlider *timeSlider;
     QLabel *timeLabel;
     QComboBox *speedBox;
+
+    QMap<QPushButton*, QString> buttonVideoMap;
 
 };
 
