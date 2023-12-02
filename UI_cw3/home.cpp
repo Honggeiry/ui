@@ -107,9 +107,9 @@ Home::Home(QWidget *parent) :
     connect(volumeSlider, &QSlider::valueChanged, this, &Home::setVolume);
 
     // Thumbnails section
-    QPushButton *thumb1Button = new QPushButton("Video thumbnail1", this);
-    QPushButton *thumb2Button = new QPushButton("Video thumbnail2", this);
-    QPushButton *thumb3Button = new QPushButton("Video thumbnail3", this);
+    QPushButton *thumb1Button = new QPushButton("", this);
+    QPushButton *thumb2Button = new QPushButton("", this);
+    QPushButton *thumb3Button = new QPushButton("", this);
 
     // Set minimum size for thumbnail buttons
     thumb1Button->setMinimumSize(200, 150);
@@ -134,8 +134,21 @@ Home::Home(QWidget *parent) :
 
     // Set thumbnails for buttons
     thumb1Button->setIcon(QIcon(":/resource/img/thumbtest1.jpg"));
+    // Set the icon size to match the button size
+    thumb1Button->setIconSize(QSize(200, 150));
+    // Remove border and background from the button
+    QString thumbBtnStyle = "QPushButton { border: none; }";
+
+    thumb1Button->setStyleSheet(thumbBtnStyle);
+
     thumb2Button->setIcon(QIcon(":/resource/img/thumbtest2.jpg"));
+    thumb2Button->setIconSize(QSize(200, 150));
+    thumb2Button->setStyleSheet(thumbBtnStyle);
+
     thumb3Button->setIcon(QIcon(":/resource/img/thumbtest3.jpg"));
+    thumb3Button->setIconSize(QSize(200, 150));
+    thumb3Button->setStyleSheet(thumbBtnStyle);
+
 
     // Connect thumbnail buttons to slot
     connect(thumb1Button, &QPushButton::clicked, this, &Home::onThumbnailClicked);
