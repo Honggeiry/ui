@@ -44,6 +44,7 @@ private slots:
     void setVolume(int volume);
     void stopVideo();
     void onThumbnailClicked();
+    void updateNowPlayingLabel(const QString &videoName);
 
 private:
     Ui::Home *ui;
@@ -57,6 +58,7 @@ private:
     QSlider *timeSlider;
     QLabel *timeLabel;
     QComboBox *speedBox;
+    QLabel *nowPlayingLabel;
 
     QMap<QPushButton*, QString> buttonVideoMap;
 

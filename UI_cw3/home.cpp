@@ -96,7 +96,11 @@ Home::Home(QWidget *parent) :
     // Set initial volume to 50%
     volumeSlider->setValue(50);
 
+    // Horizontal layout for current playing video's name
+    QHBoxLayout *nameLayout = new QHBoxLayout;
 
+    nowPlayingLabel = new QLabel("Now Playing: ", this);
+    nameLayout->addWidget(nowPlayingLabel);
 
     volumeSlider->setStyleSheet(sliderStyle);
 
@@ -167,6 +171,7 @@ Home::Home(QWidget *parent) :
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(topLayout);
     mainLayout->addWidget(videoWidget);
+    mainLayout->addLayout(nameLayout);
     mainLayout->addLayout(middleLayout);
     mainLayout->addLayout(volumeLayout);
     mainLayout->addWidget(thumbnailScrollArea);
@@ -192,6 +197,7 @@ Home::Home(QWidget *parent) :
     connect(notificationTimer, &QTimer::timeout, this, &Home::showNotification);
     // Set the timeout duration
     notificationTimer->setInterval(2000000);
+//    notificationTimer->setInterval(5000);
     notificationTimer->start();
 
     // Set a minimum size for the dialog
@@ -247,6 +253,8 @@ void Home::on_addButton_clicked()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select Video"), "", tr("Video Files (*.mp4 *.avi *.mkv)"));
     if (!fileName.isEmpty())
     {
+        QFileInfo fileInfo(fileName);
+        updateNowPlayingLabel(fileInfo.fileName());
         player->setMedia(QUrl::fromLocalFile(fileName));
         player->play();
         // Set to "Pause" because playback starts immediately
@@ -264,11 +272,19 @@ void Home::onThumbnailClicked() {
     QPushButton *clickedButton = qobject_cast<QPushButton*>(sender());
 
     QString videoPath = buttonVideoMap[clickedButton];
+
+    QFileInfo fileInfo(videoPath);
+    updateNowPlayingLabel(fileInfo.fileName());
+
     player->setMedia(QUrl(videoPath));
     player->play();
 
     playButton->setText("Pause");
 
+}
+
+void Home::updateNowPlayingLabel(const QString &videoName) {
+    nowPlayingLabel->setText("Now Playing: " + videoName);
 }
 
 void Home::togglePlayStop()
@@ -293,8 +309,6 @@ void Home::stopVideo()
 
     updateLabelTime(0);
 }
-
-
 
 void Home::durationChanged(qint64 duration)
 {
