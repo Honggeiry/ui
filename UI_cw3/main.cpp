@@ -4,7 +4,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setStyleSheet("QWidget { background-color: #A9A9A9; }");
+    a.setStyleSheet("QWidget { background-color: rgb(62, 76, 139); }");
     MainWindow w;
 
     w.show();

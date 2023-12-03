@@ -1,5 +1,4 @@
 #include "home.h"
-#include "ui_home.h"
 #include "profile.h"
 #include <QTextEdit>
 #include <QTimer>
@@ -9,6 +8,7 @@
 #include <QFileDialog>
 #include <QMediaPlayer>
 #include <QVideoWidget>
+#include <QLineEdit>
 
 Home::Home(QWidget *parent) :
     QDialog(parent)
