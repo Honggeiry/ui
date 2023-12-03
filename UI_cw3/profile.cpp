@@ -14,6 +14,7 @@ Profile::Profile(QWidget *parent) :
 
     // Set the initial size of the dialog
     // (Use iphone SE as a reference)
+    setMinimumSize(320, 650);
     resize(320, 650);
 
     QPixmap pix(":/resource/img/temp.jpg");
@@ -21,16 +22,14 @@ Profile::Profile(QWidget *parent) :
     int h = ui->framePicture->height();
     ui->profilePicture->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
+
+    QVBoxLayout *layout = new QVBoxLayout;
+    ui->framePicture->setLayout(layout);
+
      // Align the content of the label to the center
     ui->profilePicture->setAlignment(Qt::AlignCenter);
-    // Allow the profile picture to expand
-    ui->profilePicture->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    // Add the profilePicture label to the framePicture
-    ui->framePicture->setFrameShape(QFrame::StyledPanel);
-    ui->framePicture->setMinimumHeight(200);
-    ui->framePicture->setLayout(new QVBoxLayout);
-    ui->framePicture->layout()->addWidget(ui->profilePicture);
+    layout->addWidget(ui->profilePicture);
 
 }
 

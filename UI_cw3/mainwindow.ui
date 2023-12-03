@@ -33,6 +33,22 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QPushButton" name="pushButton_2">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+  background-color: rgb(130, 139, 168);
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+  border: 5px solid rgb(99, 100, 157);
+}
+QPushButton:pressed {
+  background-color: rgb(120, 138, 249);
+}
+QPushButton:hover {
+  background-color: rgb(62, 76, 139);
+  color: #1BC0FB;
+}</string>
+           </property>
            <property name="text">
             <string>Sign up</string>
            </property>
@@ -40,6 +56,22 @@
          </item>
          <item>
           <widget class="QPushButton" name="login">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+  background-color: rgb(130, 139, 168);
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+  border: 5px solid rgb(99, 100, 157);
+}
+QPushButton:pressed {
+  background-color: rgb(120, 138, 249);
+}
+QPushButton:hover {
+  background-color: rgb(62, 76, 139);
+  color: #1BC0FB;
+}</string>
+           </property>
            <property name="text">
             <string>Login</string>
            </property>
@@ -51,6 +83,22 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QPushButton" name="pushButton_3">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+  background-color: rgb(130, 139, 168);
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+  border: 5px solid rgb(99, 100, 157);
+}
+QPushButton:pressed {
+  background-color: rgb(120, 138, 249);
+}
+QPushButton:hover {
+  background-color: rgb(62, 76, 139);
+  color: #1BC0FB;
+}</string>
+           </property>
            <property name="text">
             <string>About Tomeo</string>
            </property>
@@ -58,6 +106,22 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_4">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+  background-color: rgb(130, 139, 168);
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+  border: 5px solid rgb(99, 100, 157);
+}
+QPushButton:pressed {
+  background-color: rgb(120, 138, 249);
+}
+QPushButton:hover {
+  background-color: rgb(62, 76, 139);
+  color: #1BC0FB;
+}</string>
+           </property>
            <property name="text">
             <string>Need Help?</string>
            </property>

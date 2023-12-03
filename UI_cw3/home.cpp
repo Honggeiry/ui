@@ -13,12 +13,43 @@
 Home::Home(QWidget *parent) :
     QDialog(parent)
 {
+    QString appStyle =
+        "QPushButton {"
+        "  background-color: rgb(130, 139, 168);"
+        "  color: white;"
+        "  border-radius: 15px;"
+        "  padding: 5px;"
+        "  border: 5px solid rgb(99, 100, 157);"
+        "}"
+        "QPushButton:pressed {"
+        "  background-color: rgb(120, 138, 249);"
+        "}"
+        "QPushButton:hover {"
+        "  background-color: rgb(62, 76, 139);"
+        "  color: #1BC0FB;"
+        "}"
+        "QLabel {"
+        "    color: #d3d3d3;"
+        "    font-weight: bold;"
+        "}"
+        "QLineEdit {"
+        "    border: 2px solid rgb(99, 100, 157);"
+        "    border-radius: 4px;"
+//        "    padding: 5px;"
+        "    background: white;"
+        "    color: black;"
+        "}"
+        "QLineEdit:focus {"
+        "    border-color: rgb(62, 76, 139);"
+        "}";
+    setStyleSheet(appStyle);
+
     // Button on the left side of the search line
-    QPushButton *addButton = new QPushButton("+", this);
+    QPushButton *addButton = new QPushButton("Upload", this);
 
     // Search line edit
     QLineEdit *searchEdit = new QLineEdit(this);
-    searchEdit->setPlaceholderText("Logo or Search here");
+    searchEdit->setPlaceholderText("Search here...");
 
     // Profile button
     QPushButton *profileButton = new QPushButton("My Profile", this);
@@ -34,7 +65,7 @@ Home::Home(QWidget *parent) :
     player = new QMediaPlayer(this);
     videoWidget = new QVideoWidget(this);
     player->setVideoOutput(videoWidget);
-    videoWidget->setMinimumHeight(200);
+    videoWidget->setMinimumHeight(300);
 
     // Middle section for video player controls
     playButton = new QPushButton("Pause", this);
