@@ -11,39 +11,9 @@
 #include <QLineEdit>
 
 Home::Home(QWidget *parent) :
-    QDialog(parent)
+    QDialog(parent),
+    commentsTextEdit(nullptr)
 {
-    QString appStyle =
-        "QPushButton {"
-        "  background-color: rgb(130, 139, 168);"
-        "  color: white;"
-        "  border-radius: 15px;"
-        "  padding: 5px;"
-        "  border: 5px solid rgb(99, 100, 157);"
-        "}"
-        "QPushButton:pressed {"
-        "  background-color: rgb(120, 138, 249);"
-        "}"
-        "QPushButton:hover {"
-        "  background-color: rgb(62, 76, 139);"
-        "  color: #1BC0FB;"
-        "}"
-        "QLabel {"
-        "    color: #d3d3d3;"
-        "    font-weight: bold;"
-        "}"
-        "QLineEdit {"
-        "    border: 2px solid rgb(99, 100, 157);"
-        "    border-radius: 4px;"
-//        "    padding: 5px;"
-        "    background: white;"
-        "    color: black;"
-        "}"
-        "QLineEdit:focus {"
-        "    border-color: rgb(62, 76, 139);"
-        "}";
-    setStyleSheet(appStyle);
-
     // Button on the left side of the search line
     QPushButton *addButton = new QPushButton("Upload", this);
 
@@ -82,7 +52,7 @@ Home::Home(QWidget *parent) :
                           "}"
 
                           "QSlider::handle:horizontal {"
-                          "  background: rgb(62, 76, 139);"
+                          "  background: rgb(130, 139, 168);"
                           "  border: 1px solid #1BC0FB;"
                           "  width: 18px;"
                           "  margin: -3px 0;"
@@ -90,7 +60,7 @@ Home::Home(QWidget *parent) :
                           "}"
 
                           "QSlider::add-page:horizontal {"
-                          "  background: rgb(130, 139, 168);"
+                          "  background: rgb(99, 100, 157);"
                           "}"
 
                           "QSlider::sub-page:horizontal {"
@@ -102,10 +72,13 @@ Home::Home(QWidget *parent) :
     connect(timeSlider, &QSlider::sliderMoved, this, &Home::sliderMoved);
     timeSlider->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     timeLabel = new QLabel("00:00:00", this);
+
+
     speedBox = new QComboBox(this);
     speedBox->addItem("0.5x", QVariant(0.5));
     speedBox->addItem("1.0x", QVariant(1.0));
     speedBox->addItem("1.5x", QVariant(1.5));
+    speedBox->setMinimumWidth(80);
 
     // Set "1.0x" as the default selected item
     speedBox->setCurrentIndex(1);
@@ -162,6 +135,23 @@ Home::Home(QWidget *parent) :
     thumbnailWidget->setLayout(thumbnailLayout);
     thumbnailScrollArea->setWidget(thumbnailWidget);
 
+    QString scrollbarStyle = R"(
+    QScrollArea {
+        border: 2px solid rgb(99, 100, 157);
+        border-radius: 4px;
+    }
+    QScrollBar:vertical, QScrollBar:horizontal {
+        background: rgb(99, 100, 157);
+    }
+    QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+        background: rgb(166, 175, 200);
+        border: 1px solid #1BC0FB;
+        border-radius: 3px;
+    }
+    )";
+
+    thumbnailScrollArea->setStyleSheet(scrollbarStyle);
+
     // Initialize the button to video map
     buttonVideoMap[thumb1Button] = "qrc:/resource/video/thumbtest1.mp4";
     buttonVideoMap[thumb2Button] = "qrc:/resource/video/thumbtest2.mp4";
@@ -170,18 +160,17 @@ Home::Home(QWidget *parent) :
     // Set thumbnails for buttons
     thumb1Button->setIcon(QIcon(":/resource/img/thumbtest1.jpg"));
     // Set the icon size to match the button size
-    thumb1Button->setIconSize(QSize(200, 150));
+    thumb1Button->setIconSize(QSize(250, 250));
     // Remove border and background from the button
-    QString thumbBtnStyle = "QPushButton { border: none; }";
-
+    QString thumbBtnStyle = "QPushButton { border: none; border-radius: 3px}";
     thumb1Button->setStyleSheet(thumbBtnStyle);
 
     thumb2Button->setIcon(QIcon(":/resource/img/thumbtest2.jpg"));
-    thumb2Button->setIconSize(QSize(200, 150));
+    thumb2Button->setIconSize(QSize(250, 250));
     thumb2Button->setStyleSheet(thumbBtnStyle);
 
     thumb3Button->setIcon(QIcon(":/resource/img/thumbtest3.jpg"));
-    thumb3Button->setIconSize(QSize(200, 150));
+    thumb3Button->setIconSize(QSize(250, 250));
     thumb3Button->setStyleSheet(thumbBtnStyle);
 
 
@@ -235,22 +224,112 @@ Home::Home(QWidget *parent) :
     // (Use iPhone SE as a reference)
     setMinimumSize(320, 650);
     resize(320, 650);
+
+    QString appStyle =
+        "QPushButton {"
+        "  background-color: rgb(130, 139, 168);"
+        "  color: white;"
+        "  border-radius: 15px;"
+        "  padding: 5px;"
+        "  border: 3px solid rgb(99, 100, 157);"
+        "}"
+        "QPushButton:pressed {"
+        "  background-color: rgb(120, 138, 249);"
+        "}"
+        "QPushButton:hover {"
+        "  background-color: rgb(62, 76, 139);"
+        "  color: #1BC0FB;"
+        "}"
+        "QLabel {"
+        "  color: #d3d3d3;"
+        "  font-weight: bold;"
+        "}"
+        "QLineEdit {"
+        "  border: 2px solid rgb(99, 100, 157);"
+        "  border-radius: 4px;"
+        "  background: white;"
+        "  color: black;"
+        "}"
+        "QTextEdit {"
+        "  background-color: rgb(240, 240, 240);"
+        "  color: rgb(60, 60, 60);"
+        "  border: 2px solid rgb(200, 200, 200);"
+        "  border-radius: 5px;"
+        "  padding: 5px;"
+        "  font-family: 'Arial';"
+        "  font-size: 12pt;"
+        "}"
+        "QTextEdit:focus {"
+        "  border: 2px solid rgb(100, 149, 237);"
+        "}"
+        "QLineEdit:focus {"
+        "  border-color: rgb(62, 76, 139);"
+        "}"
+        "QComboBox {"
+        "  border: 2px solid rgb(100, 100, 150);"
+        "  border-radius: 5px;"
+        "  background-color: rgb(255, 255, 255);"
+        "  color: rgb(50, 50, 50);"
+        "}"
+        "QComboBox QAbstractItemView {"
+        "  border: 2px solid darkgray;"
+        "  selection-background-color: lightgray;"
+        "}";
+    profileButton->setStyleSheet("QPushButton {margin: 3px 0 0 3px;}");
+    setStyleSheet(appStyle);
 }
+
+//void Home::on_viewComments_clicked()
+//{
+//    if (commentsTextEdit == nullptr)
+//    {
+//        // Create the QTextEdit if it doesn't exist
+//        commentsTextEdit = new QTextEdit(this);
+//        commentsTextEdit->setPlaceholderText("Type your comments here");
+//        QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(this->layout());
+//        layout->addWidget(commentsTextEdit);
+
+
+//    }
+
+//    // Toggle visibility of the QTextEdit
+//    commentsTextEdit->setVisible(!commentsTextEdit->isVisible());
+
+//}
 
 void Home::on_viewComments_clicked()
 {
     if (commentsTextEdit == nullptr)
     {
-        // Create the QTextEdit if it doesn't exist
+        // Create the QTextEdit if it doesn't exist and initially set it to not visible
         commentsTextEdit = new QTextEdit(this);
         commentsTextEdit->setPlaceholderText("Type your comments here");
         QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(this->layout());
         layout->addWidget(commentsTextEdit);
+         // Initial visibility is set to false
+        commentsTextEdit->setVisible(false);
+        // Ensure the videoWidget has the correct initial minimum height
+        videoWidget->setMinimumHeight(300);
     }
 
     // Toggle visibility of the QTextEdit
-    commentsTextEdit->setVisible(!commentsTextEdit->isVisible());
+    bool isVisible = commentsTextEdit->isVisible();
+    commentsTextEdit->setVisible(!isVisible);
+
+    // Adjust the minimum height of the videoWidget based on the visibility of the comments
+    if (isVisible)
+    {
+        // Set back to original minimum height
+        videoWidget->setMinimumHeight(300);
+    }
+    else
+    {
+        // Set to smaller size when comments are visible
+        videoWidget->setMinimumHeight(200);
+    }
 }
+
+
 
 void Home::showNotification()
 {

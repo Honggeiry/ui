@@ -19,6 +19,16 @@ MainWindow::MainWindow(QWidget *parent)
     // (Use iphone SE as a reference)
     resize(320, 650);
 
+    QPixmap pix(":/resource/img/logo.jpg");
+    ui->logo->setPixmap(pix.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    QVBoxLayout *layout = new QVBoxLayout;
+
+    // Align the content of the label to the center
+    ui->logo->setAlignment(Qt::AlignCenter);
+
+    layout->addWidget(ui->logo);
+
     // Set up the video widget and media player
     mediaPlayer = new QMediaPlayer(this);
     videoWidget = new QVideoWidget(this);
@@ -40,12 +50,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Layout for video widget
     QVBoxLayout *videoLayout = new QVBoxLayout;
+    videoLayout->addLayout(layout);
     videoLayout->addWidget(videoWidget);
+
+
 
     // Set up a container for the video widget
     QWidget *videoContainer = new QWidget;
     videoContainer->setLayout(videoLayout);
     videoContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    videoContainer->setStyleSheet("QWidget { "
+                                  "border-radius: 15px; "
+                                  "background-color: rgb(99, 100, 157); "
+                                  "}");
+
+
+
 
     // Set up the main layout
     QVBoxLayout *mainLayout = new QVBoxLayout;

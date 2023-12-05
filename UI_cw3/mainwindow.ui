@@ -23,6 +23,10 @@
       <height>107</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 3px solid rgb(99, 100, 157);
+border-radius: 10px;</string>
+    </property>
     <property name="title">
      <string/>
     </property>
@@ -132,6 +136,19 @@ QPushButton:hover {
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="logo">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Logo</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

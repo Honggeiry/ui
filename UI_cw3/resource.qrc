@@ -4,7 +4,6 @@
         <file>resource/img/temp.jpg</file>
         <file>resource/video/cloud.mp4</file>
         <file>resource/video/test.mp4</file>
-        <file>resource/img/temp2.jpg</file>
         <file>resource/img/thumbtest1.jpg</file>
         <file>resource/img/thumbtest2.jpg</file>
         <file>resource/img/thumbtest3.jpg</file>
@@ -12,5 +11,6 @@
         <file>resource/video/thumbtest2.mp4</file>
         <file>resource/video/thumbtest3.mp4</file>
         <file>resource/img/test.jpg</file>
+        <file>resource/img/logo.jpg</file>
     </qresource>
 </RCC>

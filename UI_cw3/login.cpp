@@ -5,41 +5,11 @@ Login::Login(QWidget *parent) :
 {
     setWindowTitle("Login");
 
-    // Style the Login interface with Qt Style Sheets
-    QString appStyle =
-        "QPushButton {"
-        "  background-color: rgb(130, 139, 168);"
-        "  color: white;"
-        "  border-radius: 15px;"
-        "  padding: 10px;"
-        "  border: 5px solid rgb(99, 100, 157);"
-        "}"
-        "QPushButton:pressed {"
-        "  background-color: rgb(120, 138, 249);"
-        "}"
-        "QPushButton:hover {"
-        "  background-color: rgb(62, 76, 139);"
-        "  color: #1BC0FB;"
-        "}"
-        "QFrame {"
-        "    background-color: rgb(99, 100, 157);"
-        "    padding: 5px;"
-        "}"
-        "QLabel {"
-        "    color: #d3d3d3;"
-        "    font-weight: bold;"
-        "}"
-        "QLineEdit {"
-        "    border: 2px solid rgb(99, 100, 157);"
-        "    border-radius: 4px;"
-        "    padding: 5px;"
-        "    background: white;"
-        "    color: black;"
-        "}"
-        "QLineEdit:focus {"
-        "    border-color: rgb(62, 76, 139);"
-        "}";
-    setStyleSheet(appStyle);
+    // Create a label for the logo
+    QLabel *logoLabel = new QLabel(this);
+    QPixmap logoPixmap(":/resource/img/logo.jpg");
+    logoLabel->setPixmap(logoPixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    logoLabel->setAlignment(Qt::AlignCenter);
 
     // Create a grid layout for the username and password fields
     QGridLayout *gridLayout = new QGridLayout;
@@ -57,6 +27,7 @@ Login::Login(QWidget *parent) :
 
     // Create the main layout for the login dialog
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(logoLabel);
     mainLayout->addLayout(gridLayout);
 
     // Create the frame to hold the buttons
@@ -86,6 +57,43 @@ Login::Login(QWidget *parent) :
     connect(loginButton, &QPushButton::clicked, this, &Login::on_loginButton_clicked);
 
     resize(320, 650);
+
+    // Style the Login interface with Qt Style Sheets
+    QString appStyle =
+        "QPushButton {"
+        "  background-color: rgb(130, 139, 168);"
+        "  color: white;"
+        "  border-radius: 15px;"
+        "  padding: 10px;"
+        "  border: 5px solid rgb(99, 100, 157);"
+        "}"
+        "QPushButton:pressed {"
+        "  background-color: rgb(120, 138, 249);"
+        "}"
+        "QPushButton:hover {"
+        "  background-color: rgb(62, 76, 139);"
+        "  color: #1BC0FB;"
+        "}"
+        "QFrame {"
+        "    background-color: rgb(99, 100, 157);"
+        "    padding: 5px;"
+        "    border-radius: 9px;"
+        "}"
+        "QLabel {"
+        "    color: #d3d3d3;"
+        "    font-weight: bold;"
+        "}"
+        "QLineEdit {"
+        "    border: 2px solid rgb(99, 100, 157);"
+        "    border-radius: 4px;"
+        "    padding: 5px;"
+        "    background: white;"
+        "    color: black;"
+        "}"
+        "QLineEdit:focus {"
+        "    border-color: rgb(62, 76, 139);"
+        "}";
+    setStyleSheet(appStyle);
 }
 
 Login::~Login(){}

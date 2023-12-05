@@ -1,10 +1,13 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QColor>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setStyleSheet("QWidget { background-color: rgb(62, 76, 139); }");
+
+    a.setStyleSheet("QWidget { background-color: rgb(127, 139, 172); }");
+
     MainWindow w;
 
     w.show();
