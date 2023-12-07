@@ -9,13 +9,14 @@ Setting::Setting(QWidget *parent) :
     QPushButton *languageButton = new QPushButton("Language", this);
     QPushButton *fontSizeButton = new QPushButton("Change Font Size", this);
     QPushButton *colorThemeButton = new QPushButton("Change Color Theme", this);
+    QPushButton *darkMode = new QPushButton("Light Mode", this);
     QPushButton *logoutButton = new QPushButton("Log Out", this);
     QPushButton *deleteAccountButton = new QPushButton("Delete Account", this);
     QPushButton *faqButton = new QPushButton("FAQ", this);
     QPushButton *goBackButton = new QPushButton("Go Back", this);
 
     // Set the buttons to expand
-    QList<QPushButton*> buttons = {languageButton, fontSizeButton, colorThemeButton, logoutButton, deleteAccountButton, faqButton};
+    QList<QPushButton*> buttons = {languageButton, fontSizeButton, colorThemeButton, darkMode, logoutButton, deleteAccountButton, faqButton};
     foreach(QPushButton* button, buttons) {
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     }
@@ -39,6 +40,7 @@ Setting::Setting(QWidget *parent) :
     languageButton->setStyleSheet(buttonStyle);
     fontSizeButton->setStyleSheet(buttonStyle);
     colorThemeButton->setStyleSheet(buttonStyle);
+    darkMode->setStyleSheet(buttonStyle);
     logoutButton->setStyleSheet(buttonStyle);
     deleteAccountButton->setStyleSheet(buttonStyle);
     faqButton->setStyleSheet(buttonStyle);
@@ -64,6 +66,7 @@ Setting::Setting(QWidget *parent) :
     setLayout(mainLayout);
 
     connect(goBackButton, &QPushButton::clicked, this, &Setting::on_goBackButton_clicked);
+    connect(darkMode, &QPushButton::clicked, this, &Setting::on_darkModeButton_clicked);
 
     // Set a minimum size for the dialog
     // (Use iPhone SE as a reference)
@@ -78,4 +81,16 @@ void Setting::on_goBackButton_clicked()
     hide();
     p2 = new Profile(this);
     p2->show();
+}
+
+void Setting::on_darkModeButton_clicked()
+{
+    QPushButton* button = qobject_cast<QPushButton*>(sender());
+    if (button)
+    {
+        if (button->text() == "Dark Mode")
+            button->setText("Light Mode");
+        else
+            button->setText("Dark Mode");
+    }
 }

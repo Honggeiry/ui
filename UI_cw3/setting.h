@@ -20,6 +20,7 @@ public:
 
 private slots:
     void on_goBackButton_clicked();
+    void on_darkModeButton_clicked();
 
 private:
     Ui::Setting *ui;

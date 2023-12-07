@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     videoWidget->setAspectRatioMode(Qt::KeepAspectRatioByExpanding);
 
     // Set up the media player
-    QUrl mediaUrl("qrc:/resource/video/cloud.mp4");
+    QUrl mediaUrl("qrc:/resource/video/test.mp4");
     mediaPlayer->setMedia(QMediaContent(mediaUrl));
     mediaPlayer->setVideoOutput(videoWidget);
 
