@@ -5,6 +5,8 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QApplication>
+
 
 namespace Ui {
 class Setting;
@@ -20,10 +22,12 @@ public:
 
 private slots:
     void on_goBackButton_clicked();
-    void on_darkModeButton_clicked();
+    void on_lightModeButton_clicked();
 
 private:
     Ui::Setting *ui;
+    bool isLightMode;
+    QPushButton *darkMode;
 };
 
 #endif // SETTING_H

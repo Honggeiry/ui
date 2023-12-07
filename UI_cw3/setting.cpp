@@ -1,15 +1,17 @@
 #include "setting.h"
 #include "profile.h"
 
+
 Profile* p2;
 Setting::Setting(QWidget *parent) :
-    QDialog(parent)
+    QDialog(parent),
+    isLightMode(false)
 {
     // Create buttons
     QPushButton *languageButton = new QPushButton("Language", this);
     QPushButton *fontSizeButton = new QPushButton("Change Font Size", this);
     QPushButton *colorThemeButton = new QPushButton("Change Color Theme", this);
-    QPushButton *darkMode = new QPushButton("Light Mode", this);
+    darkMode = new QPushButton("Light Mode", this);
     QPushButton *logoutButton = new QPushButton("Log Out", this);
     QPushButton *deleteAccountButton = new QPushButton("Delete Account", this);
     QPushButton *faqButton = new QPushButton("FAQ", this);
@@ -66,7 +68,7 @@ Setting::Setting(QWidget *parent) :
     setLayout(mainLayout);
 
     connect(goBackButton, &QPushButton::clicked, this, &Setting::on_goBackButton_clicked);
-    connect(darkMode, &QPushButton::clicked, this, &Setting::on_darkModeButton_clicked);
+    connect(darkMode, &QPushButton::clicked, this, &Setting::on_lightModeButton_clicked);
 
     // Set a minimum size for the dialog
     // (Use iPhone SE as a reference)
@@ -83,14 +85,58 @@ void Setting::on_goBackButton_clicked()
     p2->show();
 }
 
-void Setting::on_darkModeButton_clicked()
+void Setting::on_lightModeButton_clicked()
 {
-    QPushButton* button = qobject_cast<QPushButton*>(sender());
-    if (button)
+    // Toggle the mode
+    isLightMode = !isLightMode;
+
+    QString buttonStyle;
+    QString appStyle;
+    if (isLightMode)
     {
-        if (button->text() == "Dark Mode")
-            button->setText("Light Mode");
-        else
-            button->setText("Dark Mode");
+        // Use the light mode colour palette
+        buttonStyle = "QPushButton {"
+                      "  background-color: rgb(180, 189, 218);"
+                      "  color: black;"
+                      "  border: 5px solid rgb(149, 150, 207);"
+                      "}"
+                      "QPushButton:pressed {"
+                      "  background-color: rgb(170, 188, 255);"
+                      "}"
+                      "QPushButton:hover {"
+                      "  background-color: rgb(112, 126, 189);"
+                      "  color: rgb(127, 242, 255);"
+                      "}";
+
+        appStyle = "QWidget { background-color: rgb(177, 189, 222); }";
     }
+    else
+    {
+        // Use the original (dark mode) colour palette
+        buttonStyle = "QPushButton {"
+                      "  background-color: rgb(130, 139, 168);"
+                      "  color: white;"
+                      "  border: 5px solid rgb(99, 100, 157);"
+                      "}"
+                      "QPushButton:pressed {"
+                      "  background-color: rgb(120, 138, 249);"
+                      "}"
+                      "QPushButton:hover {"
+                      "  background-color: rgb(62, 76, 139);"
+                      "  color: #1BC0FB;"
+                      "}";
+
+        appStyle = "QWidget { background-color: rgb(127, 139, 172); }";
+    }
+
+    // Apply the stylesheet to each button
+    foreach (QPushButton* button, this->findChildren<QPushButton*>())
+    {
+        button->setStyleSheet(buttonStyle);
+    }
+
+    qApp->setStyleSheet(appStyle);
+
+    // Update the text of the darkMode button to reflect the current mode
+    darkMode->setText(isLightMode ? "Dark Mode" : "Light Mode");
 }
