@@ -3,9 +3,9 @@
 
 
 Profile* p2;
+bool Setting::isLightMode = false;
 Setting::Setting(QWidget *parent) :
-    QDialog(parent),
-    isLightMode(false)
+    QDialog(parent)
 {
     // Create buttons
     QPushButton *languageButton = new QPushButton("Language", this);
@@ -74,6 +74,8 @@ Setting::Setting(QWidget *parent) :
     // (Use iPhone SE as a reference)
     setMinimumSize(320, 650);
     resize(320, 650);
+
+    updateUIForMode();
 }
 
 Setting::~Setting() {}
@@ -87,11 +89,14 @@ void Setting::on_goBackButton_clicked()
 
 void Setting::on_lightModeButton_clicked()
 {
-    // Toggle the mode
     isLightMode = !isLightMode;
+    updateUIForMode(); // Update the UI to reflect the new mode
+}
 
+void Setting::updateUIForMode() {
     QString buttonStyle;
     QString appStyle;
+
     if (isLightMode)
     {
         // Use the light mode colour palette

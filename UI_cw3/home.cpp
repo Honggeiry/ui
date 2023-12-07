@@ -241,7 +241,7 @@ Home::Home(QWidget *parent) :
         "  color: #1BC0FB;"
         "}"
         "QLabel {"
-        "  color: #d3d3d3;"
+        "  color: #5e3ebd;"
         "  font-weight: bold;"
         "}"
         "QLineEdit {"
@@ -278,24 +278,6 @@ Home::Home(QWidget *parent) :
     profileButton->setStyleSheet("QPushButton {margin: 3px 0 0 3px;}");
     setStyleSheet(appStyle);
 }
-
-//void Home::on_viewComments_clicked()
-//{
-//    if (commentsTextEdit == nullptr)
-//    {
-//        // Create the QTextEdit if it doesn't exist
-//        commentsTextEdit = new QTextEdit(this);
-//        commentsTextEdit->setPlaceholderText("Type your comments here");
-//        QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(this->layout());
-//        layout->addWidget(commentsTextEdit);
-
-
-//    }
-
-//    // Toggle visibility of the QTextEdit
-//    commentsTextEdit->setVisible(!commentsTextEdit->isVisible());
-
-//}
 
 void Home::on_viewComments_clicked()
 {

@@ -23,10 +23,11 @@ public:
 private slots:
     void on_goBackButton_clicked();
     void on_lightModeButton_clicked();
+    void updateUIForMode();
 
 private:
     Ui::Setting *ui;
-    bool isLightMode;
+    static bool isLightMode;
     QPushButton *darkMode;
 };
 
