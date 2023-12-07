@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "login.h"
+#include <QMenuBar>
 
 MainWindow::~MainWindow()
 {
@@ -53,8 +54,6 @@ MainWindow::MainWindow(QWidget *parent)
     videoLayout->addLayout(layout);
     videoLayout->addWidget(videoWidget);
 
-
-
     // Set up a container for the video widget
     QWidget *videoContainer = new QWidget;
     videoContainer->setLayout(videoLayout);
@@ -64,9 +63,6 @@ MainWindow::MainWindow(QWidget *parent)
                                   "border-radius: 15px; "
                                   "background-color: rgb(99, 100, 157); "
                                   "}");
-
-
-
 
     // Set up the main layout
     QVBoxLayout *mainLayout = new QVBoxLayout;

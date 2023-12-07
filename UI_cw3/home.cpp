@@ -216,8 +216,8 @@ Home::Home(QWidget *parent) :
     notificationTimer = new QTimer(this);
     connect(notificationTimer, &QTimer::timeout, this, &Home::showNotification);
     // Set the timeout duration
-    notificationTimer->setInterval(2000000);
-//    notificationTimer->setInterval(5000);
+//    notificationTimer->setInterval(2000000);
+    notificationTimer->setInterval(5000);
     notificationTimer->start();
 
     // Set a minimum size for the dialog
