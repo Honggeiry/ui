@@ -41,6 +41,7 @@ Home::Home(QWidget *parent) :
     // Middle section for video player controls
     playButton = new QPushButton("Pause", this);
     QPushButton *stopButton = new QPushButton("Stop", this);
+    QPushButton *likeButton = new QPushButton("❤️", this);
     timeSlider = new QSlider(Qt::Horizontal, this);
     // Initial range
     timeSlider->setRange(0, 100);
@@ -92,7 +93,8 @@ Home::Home(QWidget *parent) :
     middleLayout->addWidget(timeLabel);
     middleLayout->addWidget(speedBox);
 
-    // Horizontal layout for volume controls and play stop buttons
+
+    // Horizontal layout for volume controls, play stop buttons and like button
     QHBoxLayout *volumeLayout = new QHBoxLayout;
     QLabel *volumeLabel = new QLabel("Volume", this);
     QSlider *volumeSlider = new QSlider(Qt::Horizontal, this);
@@ -113,6 +115,7 @@ Home::Home(QWidget *parent) :
     volumeLayout->addWidget(stopButton);
     volumeLayout->addWidget(volumeLabel);
     volumeLayout->addWidget(volumeSlider);
+    volumeLayout->addWidget(likeButton);
     connect(volumeSlider, &QSlider::valueChanged, this, &Home::setVolume);
 
     // Thumbnails section
@@ -276,6 +279,7 @@ Home::Home(QWidget *parent) :
         "  border: 2px solid darkgray;"
         "  selection-background-color: lightgray;"
         "}";
+
     profileButton->setStyleSheet("QPushButton {margin: 3px 0 0 3px;}");
     setStyleSheet(appStyle);
 }
