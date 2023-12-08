@@ -36,7 +36,7 @@ Home::Home(QWidget *parent) :
     player = new QMediaPlayer(this);
     videoWidget = new QVideoWidget(this);
     player->setVideoOutput(videoWidget);
-    videoWidget->setMinimumHeight(300);
+    videoWidget->setMinimumHeight(230);
 
     // Middle section for video player controls
     playButton = new QPushButton("Pause", this);
@@ -139,6 +139,7 @@ Home::Home(QWidget *parent) :
     QWidget *thumbnailWidget = new QWidget;
     thumbnailWidget->setLayout(thumbnailLayout);
     thumbnailScrollArea->setWidget(thumbnailWidget);
+    thumbnailScrollArea->setMinimumSize(320, 150);
 
     QString scrollbarStyle = R"(
     QScrollArea {
@@ -296,13 +297,6 @@ void Home::on_viewComments_clicked()
             "<span style='color: blue; font-weight: bold;'>Kitty</span><br/>"
             "<span style='font-size: 10pt; color: gray;'>Woah this is awesome!</span>"
             "</p>"
-            "<p style='margin-top: 10px;'>"
-            "<span style='color: green; font-weight: bold;'>Doggy</span><br/>"
-            "<span style='font-size: 10pt; color: gray;'>????Seriously???</span>"
-            "</p>"
-            "<span style='color: fuchsia; font-weight: bold;'>Birdy</span><br/>"
-            "<span style='font-size: 10pt; color: gray;'>What a great video!</span>"
-            "</p>"
             "<p style='margin-top: 20px; font-style: italic; color: #808080;'>"
             "Type your comments here..."
             "</p>";
@@ -324,12 +318,12 @@ void Home::on_viewComments_clicked()
     if (isVisible)
     {
         // Set back to original minimum height
-        videoWidget->setMinimumHeight(300);
+        videoWidget->setMinimumHeight(230);
     }
     else
     {
         // Set to smaller size when comments are visible
-        videoWidget->setMinimumHeight(200);
+        videoWidget->setMinimumHeight(110);
     }
 }
 
