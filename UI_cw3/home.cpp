@@ -41,7 +41,8 @@ Home::Home(QWidget *parent) :
     // Middle section for video player controls
     playButton = new QPushButton("Pause", this);
     QPushButton *stopButton = new QPushButton("Stop", this);
-    QPushButton *likeButton = new QPushButton("❤️", this);
+    likeButton = new QPushButton("❤️", this);
+    connect(likeButton, &QPushButton::clicked, this, &Home::toggleLikeButton);
     timeSlider = new QSlider(Qt::Horizontal, this);
     // Initial range
     timeSlider->setRange(0, 100);
@@ -479,4 +480,25 @@ void Home::on_profileButton_clicked()
     hide();
     p = new Profile(this);
     p->show();
+}
+
+void Home::toggleLikeButton() {
+    isLiked = !isLiked; // Toggle the state
+    if (isLiked) {
+        // Change background to hotpink when liked
+        likeButton->setStyleSheet("QPushButton { background-color: hotpink; }");
+    } else {
+        // Revert to original style when not liked
+        likeButton->setStyleSheet("QPushButton {"
+                                  "  background-color: rgb(130, 139, 168);"
+                                  "  color: white;"
+                                  "  border-radius: 15px;"
+                                  "  padding: 5px;"
+                                  "  border: 3px solid rgb(99, 100, 157);"
+                                  "}"
+                                  "QPushButton:hover {"
+                                  "  background-color: rgb(62, 76, 139);"
+                                  "  color: #1BC0FB;"
+                                  "}");
+    }
 }

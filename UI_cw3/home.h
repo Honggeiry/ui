@@ -45,6 +45,7 @@ private slots:
     void stopVideo();
     void onThumbnailClicked();
     void updateNowPlayingLabel(const QString &videoName);
+    void toggleLikeButton();
 
 private:
     Ui::Home *ui;
@@ -61,6 +62,9 @@ private:
     QLabel *nowPlayingLabel;
 
     QMap<QPushButton*, QString> buttonVideoMap;
+    // To keep track of like button state
+    bool isLiked = false;
+    QPushButton *likeButton;
 
 };
 
