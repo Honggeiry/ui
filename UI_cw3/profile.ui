@@ -50,6 +50,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_5">
+        <property name="text">
+         <string>Change Profile Picture</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QSplitter" name="splitter">
         <property name="styleSheet">
          <string notr="true"/>
@@ -101,13 +108,6 @@
               <string>Profile Picture</string>
              </property>
             </widget>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="text">
-             <string>Change Profile Picture</string>
-            </property>
            </widget>
           </item>
           <item>

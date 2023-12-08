@@ -218,7 +218,7 @@ Home::Home(QWidget *parent) :
     connect(notificationTimer, &QTimer::timeout, this, &Home::showNotification);
     // Set the timeout duration
 //    notificationTimer->setInterval(2000000);
-    notificationTimer->setInterval(5000);
+    notificationTimer->setInterval(1000);
     notificationTimer->start();
 
     // Set a minimum size for the dialog
@@ -302,6 +302,7 @@ void Home::on_viewComments_clicked()
             "Type your comments here..."
             "</p>";
         commentsTextEdit->setHtml(initialComments);
+
         QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(this->layout());
         layout->addWidget(commentsTextEdit);
          // Initial visibility is set to false
@@ -333,8 +334,15 @@ void Home::showNotification()
 {
     // Create the notification dialog
     QMessageBox notificationDialog(this);
+    QString messageBoxStyle =
+        "QMessageBox {"
+        "font: bold 15px 'Papyrus';"
+        "}";
+
+    notificationDialog.setStyleSheet(messageBoxStyle);
     notificationDialog.setWindowTitle("Notification");
-    notificationDialog.setText("Time to upload videos!");
+    notificationDialog.setText("<p><span>Time to upload videos~</span></p>"
+                               "<p><span style='color: #DAA520; font-size: 30px;'>₍ ᐢ.⌄.ᐢ ₎ ꜆˖.♡</span></p>");
 
     // Set the size of the dialog
     notificationDialog.setFixedSize(200, 30);
