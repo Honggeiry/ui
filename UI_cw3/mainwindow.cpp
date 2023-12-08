@@ -85,7 +85,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::on_login_clicked() {
     mediaPlayer->stop();
-    emit openLoginWindow(); // Emit signal to open login window
+    // Emit signal to open login window
+    emit openLoginWindow();
 }
 
 

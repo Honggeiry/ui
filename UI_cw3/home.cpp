@@ -20,6 +20,7 @@ Home::Home(QWidget *parent) :
     // Search line edit
     QLineEdit *searchEdit = new QLineEdit(this);
     searchEdit->setPlaceholderText("Search here...");
+    searchEdit->setToolTip("You can search videos by typing key words here");
 
     // Profile button
     QPushButton *profileButton = new QPushButton("My Profile", this);
@@ -285,7 +286,22 @@ void Home::on_viewComments_clicked()
     {
         // Create the QTextEdit if it doesn't exist and initially set it to not visible
         commentsTextEdit = new QTextEdit(this);
-        commentsTextEdit->setPlaceholderText("Type your comments here");
+        QString initialComments =
+            "<p>"
+            "<span style='color: blue; font-weight: bold;'>Kitty</span><br/>"
+            "<span style='font-size: 10pt; color: gray;'>Woah this is awesome!</span>"
+            "</p>"
+            "<p style='margin-top: 10px;'>"
+            "<span style='color: green; font-weight: bold;'>Doggy</span><br/>"
+            "<span style='font-size: 10pt; color: gray;'>????Seriously???</span>"
+            "</p>"
+            "<span style='color: fuchsia; font-weight: bold;'>Birdy</span><br/>"
+            "<span style='font-size: 10pt; color: gray;'>What a great video!</span>"
+            "</p>"
+            "<p style='margin-top: 20px; font-style: italic; color: #808080;'>"
+            "Type your comments here..."
+            "</p>";
+        commentsTextEdit->setHtml(initialComments);
         QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(this->layout());
         layout->addWidget(commentsTextEdit);
          // Initial visibility is set to false
