@@ -29,6 +29,23 @@ Profile::Profile(QWidget *parent) :
      // Align the content of the label to the center
     ui->profilePicture->setAlignment(Qt::AlignCenter);
 
+    QHBoxLayout *ppLayout = new QHBoxLayout;
+
+    // Create spacers to push the button to the center
+    QSpacerItem *horizontalSpacerLeft = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    QSpacerItem *horizontalSpacerRight = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+    // Add the spacers and button to the layout
+    ppLayout->addItem(horizontalSpacerLeft);
+    ppLayout->addWidget(ui->changePP);
+    ppLayout->addItem(horizontalSpacerRight);
+
+    ui->changePP->setStyleSheet("QPushButton {"
+                                "  background-color: rgb(62, 76, 139);"
+                                "  border-radius: 10px;"
+                                "}");
+
+    layout->addLayout(ppLayout);
     layout->addWidget(ui->profilePicture);
 
 }
