@@ -19,10 +19,17 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void showLoginWindow();
     ~MainWindow();
+
+signals:
+    void openLoginWindow();
 
 private slots:
     void on_login_clicked();
+
+public slots:
+    void showWindow();
 
 private:
     Ui::MainWindow *ui;

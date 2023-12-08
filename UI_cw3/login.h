@@ -21,6 +21,10 @@ public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
 
+// Signal to show the main window
+signals:
+    void showMainWindow();
+
 private slots:
     void on_loginButton_clicked();
 

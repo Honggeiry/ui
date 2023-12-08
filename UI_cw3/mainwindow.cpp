@@ -76,12 +76,29 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Start playing the video
     mediaPlayer->play();
+
+    l = new Login(this);
+    connect(l, &Login::showMainWindow, this, &MainWindow::showWindow);
+    connect(this, &MainWindow::openLoginWindow, this, &MainWindow::showLoginWindow);
+
 }
 
-void MainWindow::on_login_clicked()
-{
+void MainWindow::on_login_clicked() {
     mediaPlayer->stop();
-    close();
-    l = new Login(this);
+    emit openLoginWindow(); // Emit signal to open login window
+}
+
+
+void MainWindow::showWindow() {
+    mediaPlayer->play();
+    this->show();
+}
+
+void MainWindow::showLoginWindow() {
+    hide();
+    if (!l) {
+        l = new Login(this);
+        connect(l, &Login::showMainWindow, this, &MainWindow::show);
+    }
     l->show();
 }
