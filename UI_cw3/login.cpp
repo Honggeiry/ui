@@ -36,11 +36,13 @@ Login::Login(QWidget *parent) :
     frame->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     // Create the buttons
+    QPushButton *returnButton = new QPushButton("Return", frame);
     QPushButton *loginButton = new QPushButton("Login", frame);
     QPushButton *resetButton = new QPushButton("Reset", frame);
 
     // Create the layout for the frame
     QHBoxLayout *frameLayout = new QHBoxLayout(frame);
+    frameLayout->addWidget(returnButton, 1);
     frameLayout->addWidget(loginButton, 1);
     frameLayout->addWidget(resetButton, 1);
 
