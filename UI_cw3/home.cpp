@@ -138,8 +138,9 @@ Home::Home(QWidget *parent) :
     thumbnailScrollArea->setWidgetResizable(true);
     QWidget *thumbnailWidget = new QWidget;
     thumbnailWidget->setLayout(thumbnailLayout);
+
     thumbnailScrollArea->setWidget(thumbnailWidget);
-    thumbnailScrollArea->setMinimumSize(320, 150);
+    thumbnailScrollArea->setMaximumHeight(180);
 
     QString scrollbarStyle = R"(
     QScrollArea {
@@ -196,12 +197,12 @@ Home::Home(QWidget *parent) :
     // Main layout
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addLayout(topLayout);
-    mainLayout->addWidget(videoWidget);
-    mainLayout->addLayout(nameLayout);
-    mainLayout->addLayout(middleLayout);
-    mainLayout->addLayout(volumeLayout);
-    mainLayout->addWidget(thumbnailScrollArea);
-    mainLayout->addLayout(commentsLayout);
+    mainLayout->addWidget(videoWidget, 1);
+    mainLayout->addLayout(nameLayout, 0);
+    mainLayout->addLayout(middleLayout, 0);
+    mainLayout->addLayout(volumeLayout, 0);
+    mainLayout->addWidget(thumbnailScrollArea, 0);
+    mainLayout->addLayout(commentsLayout, 0);
 
 
     // Connect the play button to the togglePlayStop slot
