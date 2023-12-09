@@ -366,7 +366,7 @@ void Home::showNotification()
 
 void Home::on_addButton_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Select Video"), "", tr("Video Files (*.mp4 *.avi *.mkv)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select Video"), "", tr("Video Files (*.mp4 *.avi *.mkv *.mov)"));
     if (!fileName.isEmpty())
     {
         QFileInfo fileInfo(fileName);
