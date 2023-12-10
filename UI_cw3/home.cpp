@@ -224,6 +224,7 @@ Home::Home(QWidget *parent) :
     notificationTimer = new QTimer(this);
     connect(notificationTimer, &QTimer::timeout, this, &Home::showNotification);
     // Set the timeout duration
+    // When debugging, make setIntercal bigger to avoid notification prompts
 //    notificationTimer->setInterval(2000000);
     notificationTimer->setInterval(6000);
     notificationTimer->start();
@@ -448,6 +449,7 @@ void Home::sliderMoved(int position)
 
 void Home::updateLabelTime(qint64 milliseconds)
 {
+    // Make time formatted
     int seconds = (milliseconds / 1000) % 60;
     int minutes = (milliseconds / (1000 * 60)) % 60;
     int hours = (milliseconds / (1000 * 60 * 60)) % 24;
