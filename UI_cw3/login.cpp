@@ -38,8 +38,10 @@ Login::Login(QWidget *parent) :
     // Create the buttons
     QPushButton *returnButton = new QPushButton("Return", frame);
     connect(returnButton, &QPushButton::clicked, this, [this]() {
-        emit showMainWindow(); // Emit signal to show the main window
-        this->hide(); // Hide the login window instead of closing it
+        // Emit signal to show the main window
+        emit showMainWindow();
+        // Hide the login window instead of closing it
+        this->hide();
     });
 
     QPushButton *loginButton = new QPushButton("Login", frame);

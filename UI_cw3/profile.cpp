@@ -26,7 +26,7 @@ Profile::Profile(QWidget *parent) :
     QVBoxLayout *layout = new QVBoxLayout;
     ui->framePicture->setLayout(layout);
 
-     // Align the content of the label to the center
+    // Align the content of the label to the center
     ui->profilePicture->setAlignment(Qt::AlignCenter);
 
     QHBoxLayout *ppLayout = new QHBoxLayout;
