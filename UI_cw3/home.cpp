@@ -42,6 +42,7 @@ Home::Home(QWidget *parent) :
     playButton = new QPushButton("Pause", this);
     QPushButton *stopButton = new QPushButton("Stop", this);
     likeButton = new QPushButton("❤️", this);
+    likeButton->setToolTip("Like this video");
     connect(likeButton, &QPushButton::clicked, this, &Home::toggleLikeButton);
     timeSlider = new QSlider(Qt::Horizontal, this);
     // Initial range
@@ -223,8 +224,8 @@ Home::Home(QWidget *parent) :
     notificationTimer = new QTimer(this);
     connect(notificationTimer, &QTimer::timeout, this, &Home::showNotification);
     // Set the timeout duration
-    notificationTimer->setInterval(2000000);
-//    notificationTimer->setInterval(6000);
+//    notificationTimer->setInterval(2000000);
+    notificationTimer->setInterval(6000);
     notificationTimer->start();
 
     // Set a minimum size for the dialog

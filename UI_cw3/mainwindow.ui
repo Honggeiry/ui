@@ -104,7 +104,7 @@ QPushButton:hover {
 }</string>
            </property>
            <property name="text">
-            <string>About Tomeo</string>
+            <string>About FLash</string>
            </property>
           </widget>
          </item>
