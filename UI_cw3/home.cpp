@@ -475,6 +475,8 @@ void Home::on_profileButton_clicked()
 {
     // Stop the timer when the user opens another dialog
     notificationTimer->stop();
+    // Stop the player
+    player->pause();
     hide();
     p = new Profile(this);
     p->show();
